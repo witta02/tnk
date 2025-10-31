@@ -138,3 +138,40 @@
     .grid-4{grid-template-columns:1fr 1fr}
     .grid-3,.grid-2{grid-template-columns:1fr}
   }
+/* Hero background like the screenshot */
+.hero{
+    position: relative;
+    padding: 0;                     /* remove extra padding; we’ll size by min-height */
+    border-bottom: 1px solid var(--line);
+    min-height: 56vh;               /* big banner */
+    background:
+      linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.25)),  /* darken for text */
+      url('tnk-hero.jpg.jpg') center 35% / cover no-repeat;       /* adjust focal point */
+  }
+  .hero::after{                      /* soft fade to dark section below */
+    content:"";
+    position:absolute;left:0;right:0;bottom:-1px;height:120px;
+    background:linear-gradient(180deg, transparent, #0a0d12 65%);
+    pointer-events:none;
+  }
+  .hero-inner{
+    display:grid;grid-template-columns:1fr;align-items:flex-end;
+    gap:0;height:100%;
+  }
+  .hero-content{
+    padding: 72px 0 40px;           /* spacing inside banner */
+  }
+  .hero h1{color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+  .hero p{color:#e9eef6}
+  
+  /* we use the photo as bg now */
+  .hero-media{display:none}
+  
+  /* Larger screens: a bit taller + subtle parallax */
+  @media (min-width: 1000px){
+    .hero{min-height: 64vh;background-attachment: fixed;}
+  }
+  @media (max-width: 640px){
+    .hero{min-height: 42vh;background-position:center 25%;}
+    .hero-content{padding: 48px 0 28px;}
+  }
